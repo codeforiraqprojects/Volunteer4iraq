@@ -45,15 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'iraq.apps.IraqConfig',
-    # 'authy',
-    # 'post',
-    # 'comment',
-    # 'direct',
-    # 'notifications',
-    # 'stories',
-    # 'crispy_forms',
-    # 'django_filters',
-    # 'rest_framework',
 ]
 
 MIDDLEWARE = [

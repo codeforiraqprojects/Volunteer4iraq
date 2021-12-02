@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http.response import Http404
 from django.contrib import messages
-# from django.contrib.auth.models import User,Group
 from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
@@ -12,19 +11,7 @@ from django.db.models import Count
 from django.views.generic import TemplateView, ListView ,CreateView
 from django.urls import reverse
 
-# import json
-# import requests
-# # from .forms import AddMemberForm,IntitiesForm
-# from django.urls import reverse
-# # from .filters import IntityFilter
-# from .decorators import notLoggedUsers,allowedUsers,IntityAdmins
-# # from .forms import IntityForm
-# # from .forms import UserUpdateForm, ProfileUpdateForm
-# # from .forms import UserUpdateForm,ProfileUpdateForm
 
-# # Create by using class based view replace function based view that provide Django
-# # from django.views.generic import CreateView,UpdateView
-# # from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # # ========Views for User=================#
@@ -306,11 +293,8 @@ def Send_Notification(request):
 @login_required(login_url='doLogin')
 def comments1(request):
     comments=Comment.objects.order_by('-created_at')
-    # comments = Comment.objects.all()
-    # comments_user = Comment_User.objects.all()
     comments_user = Comment_User.objects.order_by('-created_at')
     customuser = CustomUser.objects.all()
-    # reply = Reply.objects.all()
     paginator = Paginator(comments, 4)
     page = request.GET.get('page')
     try:
@@ -320,7 +304,6 @@ def comments1(request):
     except EmptyPage:
         comments = paginator.page(paginator.num_page)
     context = {
-        # 'reply': reply,
         'customuser':customuser,
         'comments' : comments,
         'comments_user' : comments_user,

@@ -5,9 +5,6 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as authviews
 from .IntitiesViews import Intities, LikeViewUser,SearchIntitiesResultsView,SearchPosterEduResultsView,SearchPosterEnvResultsView,SearchPosterHeaResultsView,SearchPosterArtResultsView,SearchPosterOthResultsView,LikeView
 from .UserViews import SearchIntitiesResultsView1,SearchPosterEduResultsView1,SearchPosterEnvResultsView1,SearchPosterHeaResultsView1,SearchPosterArtResultsView1,SearchPosterOthResultsView1,LikeView1,LikeViewUser1
-# from django.contrib.auth.views import LogoutView
-
-# # from .IntitiesViews import IntitiesCreateView,IntitiesUpdateView
 
 urlpatterns = [
 
@@ -50,8 +47,6 @@ urlpatterns = [
     path('add_comment_save', IntitiesViews.Add_Comment_Save , name='add_comment_save'),
     path('delete_comment/<str:comment_id>' ,IntitiesViews.delete_comment, name='delete_comment'),
     path('delete_comment_user/<str:comment_user_id>' ,IntitiesViews.delete_comment_user, name='delete_comment_user'),
-    # path('reply',IntitiesViews.ComReply, name='reply'),
-    # path('search_members/', SearchMemberView, name='search_members'),
     path('manage_members/<str:member_id>',IntitiesViews.Manage_Members,name="manage_members"),
     path('add_member_save',IntitiesViews.Add_Member_Save,name="add_member_save"),
     path('update_member/<str:member_id>' , IntitiesViews.update_member, name='update_member'),

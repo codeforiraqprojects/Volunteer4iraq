@@ -43,7 +43,6 @@ urlpatterns = [
     path('register_user', views.RegisterUser, name='register_user'),
     path('logout', LogoutView.as_view(template_name= "iraq/logout.html"), name='logout'),
 
-    # # path('oauth/', include('social_django.urls', namespace='social')),
     
     # # # for Reset Password
     path('reset_password/' , auth_views.PasswordResetView.as_view(template_name= "iraq/password_reset.html"), name="reset_password"),

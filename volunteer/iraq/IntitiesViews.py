@@ -2,9 +2,7 @@ from typing import Any
 from django.http.response import Http404
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.auth.decorators import login_required
-# from .forms import UserUpdateForm,ProfileUpdateForm
 from django.contrib import messages
-# from django.contrib.auth.models import User,Group
 from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
@@ -13,26 +11,6 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Count
 from django.views.generic import TemplateView, ListView ,CreateView
 from django.urls import reverse
-from django.template import loader
-# from stories.models import Story, StoryStream
-# from django.contrib.auth.models import User
-# from django import template
-# from .decorators import notLoggedUsers
-# import json
-# import requests
-# # from .forms import AddMemberForm,IntitiesForm
-# from django.urls import reverse
-# # from .filters import IntityFilter
-# from .decorators import notLoggedUsers,allowedUsers,IntityAdmins
-# # from .forms import IntityForm
-# # from .forms import UserUpdateForm, ProfileUpdateForm
-
-# # Create by using class based view replace function based view that provide Django
-# # from django.views.generic import CreateView,UpdateView
-# # from django.contrib.auth.mixins import LoginRequiredMixin
-
-
-
 
 
 
@@ -311,30 +289,6 @@ def Edit_Intities_Save(request):
 
 
 
-# @login_required(login_url='doLogin')
-# @allowedUsers(allowedGroups=['intityAdmin'])
-# def ComReply(request):
-#     if request.method!="POST":
-#         return HttpResponse("<h2>Method Now Allowed</h2>")
-#     else:
-#         # comment_name=Comment.objects.get(id=request.POST.get('comm_name',''))
-#         # comment_name=Comment.Post.get('comm_name','')
-#         # comments = Comment.objects.all()
-#         comment_name = Comment(request.POST.get('comm_name',''))
-#         rep = Reply(comment_name=comment_name,author=request.user,reply_body=request.POST.get('reply_body',''))
-#         rep.save()
-#     return redirect("/comments")
-
-# class SearchMemberView(ListView):
-    # model = Member
-    # model = Intity
-    # template_name = 'hod_template/manage_member.html'
-
-    # def get_queryset(self): # new
-    #     query = self.request.GET.get('q')
-    #     object_list = Member.objects.filter(Q(mem__icontains=query,))
-    #     return object_list
-
 
 
 
@@ -343,7 +297,6 @@ def Edit_Intities_Save(request):
 def Manage_Members(request,member_id):
     adminhod=CustomUser.objects.get(id=member_id)
     members=adminhod.member_set.all()
-    # members = Member.objects.order_by('-created_at').filter()
     paginator = Paginator(members, 10)
     page = request.GET.get('page')
     try:
@@ -502,7 +455,6 @@ def my_declaration(request,poster_id):
     adminhod=CustomUser.objects.get(id=poster_id)
     posters=adminhod.poster_set.all()
     regions = Region.objects.all()
-    # posters=Poster.objects.order_by('-created_at')
     classifications= Classification.objects.all()
     paginator = Paginator(posters, 6)
     page = request.GET.get('page')
@@ -610,19 +562,11 @@ def DeletePoster(request,poster_id):
 
 class SearchPosterEduResultsView(ListView):
     model = Poster
-    # regions = Region.objects.all(),
-    # poster=Poster.objects.all()
-    # num_poster = poster.filter(classification='تعليم').count()
     template_name = 'hod_template/search_posterEdu_results.html'
     queryset = Poster.objects.filter(classification__icontains='تعليم')# new
-    # num_poster = Poster.objects.filter(classification__icontains='تعليم').count()
     ordering = ['id']
     paginate_by = 6
     paginate_orphans = 1
-    # def count(request):
-    #     poster=Poster.objects.all()
-    #     num_poster = poster.filter(classification='تعليم').count()
-    #     return render(request,'search_posterEdu_results.html',{'num_poster':num_poster})
     def get_context_data(self, *args, **kwargs):
         try:
             return super(SearchPosterEduResultsView,self).get_context_data(*args,**kwargs)
@@ -756,7 +700,6 @@ def comments(request):
     comments_user = Comment_User.objects.order_by('-created_at')
     # comments_user = Comment_User.objects.all()
     customuser = CustomUser.objects.all()
-    # reply = Reply.objects.all()
     paginator = Paginator(comments, 4)
     page = request.GET.get('page')
     try:

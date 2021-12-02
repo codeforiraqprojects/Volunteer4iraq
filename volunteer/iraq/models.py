@@ -1,14 +1,11 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# from django.db.models.fields import SlugField
 from django.db.models.signals import post_save,post_delete
-# from notifications.models import Notification
 from django.utils.text import slugify
 import uuid
 from django.dispatch import receiver
 from django.urls import reverse
-#import image from pillow desktop
 from PIL import Image
 from django.template.defaultfilters import date, slugify, title
 
@@ -79,8 +76,7 @@ class Region(models.Model):
         return self.region
 
 
-# class Image_profile(models.Model):
-#     profile_pic=models.ImageField(default='default.jpg', upload_to='profile_pics')
+
 
 
 class AdminHOD(models.Model):
@@ -90,7 +86,6 @@ class AdminHOD(models.Model):
     facebook=models.URLField(max_length=255,default='https://www.facebook.com/')
     Gender = (('MALE' ,'ذكر'),('FEMALE' , 'انثى'))
     gender=models.CharField(max_length=255, choices=Gender)
-    # gender=models.CharField(max_length=255, null=True)
     employee=models.CharField(max_length=255, null=True)
     region=models.CharField(max_length=255,null=True)
     profile_pic=models.ImageField(default='default.png', upload_to='profile_pics')
@@ -118,7 +113,6 @@ class People(models.Model):
     facebook=models.URLField(max_length=255,default='https://www.facebook.com/')
     Gender = (('MALE' ,'ذكر'),('FEMALE' , 'انثى'))
     gender=models.CharField(max_length=255, choices=Gender)
-    # gender=models.CharField(max_length=255, null=True)
     employee=models.CharField(max_length=255, null=True)
     region=models.CharField(max_length=255,null=True)
     profile_pic=models.ImageField(default='default.png', upload_to='profile_pics')
@@ -155,10 +149,7 @@ def save_user_profile(sender,instance,**kwargs):
         instance.adminhod.save()
     if instance.user_type ==2:
         instance.people.save()
-    # if instance.user_type==2:
-    #     instance.intity.save()
-    # if instance.user_type ==3:
-    #     instance.people.save()
+
 
 
 
@@ -208,24 +199,20 @@ class Poster(models.Model):
     place=models.CharField(max_length=255)
     classification=models.CharField(max_length=255)
     posts=models.CharField(max_length=1000)
-    # no_Intity=models.AutoField(primary_key=True)
     poster_image=models.FileField(null=True,blank=True,upload_to='images')
     date_poster=models.DateField()
-    # time_poster=models.TimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
     class Meta:
       verbose_name_plural = "posters"
 
-    # def __str__(self):
-    #     return self.admin
+
 
 class NumVolunteer(models.Model):
     n_intity=models.CharField(max_length=255)
     name=models.CharField(max_length=255)
     age = models.PositiveIntegerField(null=True, blank=True)
-    # age=models.IntegerField()
     gender=models.CharField(max_length=255)
     region=models.ForeignKey(Region,on_delete=models.CASCADE)
     employee=models.CharField(max_length=255)
@@ -238,10 +225,8 @@ class NumVolunteer(models.Model):
         return self.name
 
 class Comment(models.Model):
-    # intity_name = models.ForeignKey(Intity,null=True, on_delete=models.CASCADE,related_name='comments')
     comm_name = models.CharField(max_length=100, blank=True)
     comment_pic=models.ForeignKey(AdminHOD, on_delete=models.CASCADE)
-    # reply = models.ForeignKey("Comment", null=True, blank=True, on_delete=models.CASCADE,related_name='replies')
     author = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     body = models.TextField(max_length=500)
     likes = models.ManyToManyField(CustomUser, related_name='blog_comment')
@@ -266,10 +251,8 @@ class Comment(models.Model):
 
 
 class Comment_User(models.Model):
-    # intity_name = models.ForeignKey(Intity,null=True, on_delete=models.CASCADE,related_name='comments')
     comm_name = models.CharField(max_length=100, blank=True)
     comment_pic=models.ForeignKey(People, on_delete=models.CASCADE)
-    # reply = models.ForeignKey("Comment", null=True, blank=True, on_delete=models.CASCADE,related_name='replies')
     author = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     body = models.TextField(max_length=500)
     likes = models.ManyToManyField(CustomUser, related_name='blog_comment_user')

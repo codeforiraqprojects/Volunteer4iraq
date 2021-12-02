@@ -13,13 +13,7 @@ from django.urls import reverse
 import requests
 from django.conf import settings
 from .forms import CreateNewUser
-from .decorators import notLoggedUsers
 
-# import json
-# from django.contrib.auth.models import Group
-# from django.core.files.storage import FileSystemStorage
-# from django.contrib.auth.forms import UserCreationForm
-# from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 
