@@ -1,0 +1,117 @@
+{% extends 'hod_template/base_template.html' %} {% load static %}
+<!-- /* ======== Start Comment Page======== */ -->
+{% block main_content %}
+<div class="background2">
+    <div class="form-group pr-5 pl-5 pt-4">
+        {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% endif %} {% endfor %} {% endif %}
+    </div>
+    <p class="font-weight-bold pt-4 pb-4 mr-5 text-primary font-size1"> الآراء و المقترحات</p>
+    <label class="pt-3 float-right mr-5 font-weight-bold">كتابة تعليق </label>
+    <form role="form" action="/add_comment_save" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- <input type="hidden" name="comment.id" value="{{comment.id}}"> -->
+        <!-- <input type="hidden" name="user" value="{{user.adminhod}}"> -->
+        <!-- <input type="hidden" name="user.adminhod" value="{{user.adminhod}}"> -->
+        <!-- <input type="" name="comment.comm_name" value="{{comment.comm_name}}"> -->
+        <div class="mr-4 ml-3">
+            <!-- <input type="text"  class="col-sm-12 Boxshadow" style="border: 1px solid #44A5E4;height:50px;border-radius:8px;" name="admin"> -->
+            <textarea class="Borders border-0 Boxshadow bg-white p-4 mb-2" style="width:100%;height:160px" name="body" placeholder="  اترك تعليق......."></textarea>
+        </div>
+        <div class="mr-4 ml-3">
+            <button type="submit" name="submit" class="border-0 text-center btn-primary btn-block Boxshadow font-weight-bolder H2 Borders1" value="Comment">نشر التعليق</button>
+        </div>
+    </form>
+    <div>
+        <label class="font-weight-bolder float-right mr-5 mt-4">كل التعليقات </label>
+        <span class="text-white badge rounded-circle mt-2 mr-5 mb-3 Boxshadow bg-primary pt-3 button" style="width:45px;height:45px;border-radius:50%" data-placement="top" title="عدد التعليقات">{{num_com}}</span>
+    </div>
+    {% if comments or comments_user %}
+    <!--  -->
+    {% for comment_user in comments_user %}
+    <div class="Borders border-0 bg-white Boxshadow pt-4 pb-2 mr-4 ml-4 Borders4 mt-4 mb-2">
+        <img style="width:75px;height:75px" class="rounded-circle mr-4" src="/media/{{comment_user.comment_pic.profile_pic}}" alt="Comment">
+        <div class="row">
+            <h4 class="text-primary mr-5">@{{comment_user.author}}</h4>
+            <!-- <div class="col">
+                    <p class="mr-4">{{comment.comm_name}}</p>
+                </div> -->
+            <div class="col mt-3 mr-4">
+                <p class="font-size3"><small><i class="text-danger">نشر  في ...</i></small>({{ comment_user.created_at|timesince}})</p>
+            </div>
+            <div class="col">
+                <a class="float-left ml-5" href="{% url 'delete_comment_user' comment_user.id %}"><i class="text-primary fas fa-trash-alt"></i></a>
+            </div>
+        </div>
+        <div class="p-2 mr-3 ml-3 mt-3" style="line-height: 30px;">
+            {{ comment_user.body }}
+        </div>
+        <div class="row">
+            <form action="{% url 'like_comment_user' comment_user.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" , name="comment_user_id" , value="{{ comment_user.id }}" class="bg-white border-0 mr-3" style="width:100px">
+                    <i class="text-danger far fa-heart mt-4 mr-4"></i>
+                    <p class="float-left  mt-3">اعجبني</p>
+                </button>
+            </form>
+            <small class="mr-5 mt-3 Boxshadow Borders1 pt-2 pr-3" style="width:35px;height:35px">{{ comment_user.likes.count }}</small><small class="mr-4 mt-4 font-size"> إعجاب</small> {% comment %}
+            <!-- <i class="text-danger far fa-comment mr-5 ml-2 mt-2" data-toggle="modal" data-target="#Reply"></i>
+            <p class="font-weight-bolder">رد</p> -->
+            {% endcomment %}
+        </div>
+    </div>
+    {% endfor %}
+    <!--  -->
+    {% for comment in comments %}
+    <div class="Borders border-0 bg-white Boxshadow pt-4 pb-2 mr-4 ml-4 Borders4 mb-2">
+        <img style="width:75px;height:75px" class="rounded-circle mr-4" src="/media/{{comment.comment_pic.profile_pic}}" alt="Comment">
+        <div class="row">
+            <h4 class="text-primary mr-5">@{{comment.author}}</h4>
+            <!-- <div class="col">
+                <p class="mr-4">{{comment.comm_name}}</p>
+            </div> -->
+            <div class="col mt-3 mr-4">
+                <p class="font-size3"><small><i class="text-danger">نشر  في ...</i></small>({{ comment.created_at|timesince}})</p>
+            </div>
+            <div class="col">
+                <a class="float-left ml-5" href="{% url 'delete_comment' comment.id %}"><i class="text-primary fas fa-trash-alt"></i></a>
+            </div>
+        </div>
+        <div class="p-2 mr-3 ml-3 mt-3" style="line-height: 30px;">
+            {{ comment.body }}
+        </div>
+        <div class="row">
+            <form action="{% url 'like_comment' comment.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" , name="comment_id" , value="{{ comment.id }}" class="bg-white border-0 mr-3" style="width:100px">
+                    <i class="text-danger far fa-heart mt-4 mr-4"></i>
+                    <p class="float-left  mt-3">اعجبني</p>
+                </button>
+            </form>
+            <small class="mr-5 mt-3 Boxshadow Borders1 pt-2 pr-3" style="width:35px;height:35px">{{ comment.likes.count }}</small><small class="mr-4 mt-4 font-size"> إعجاب</small> {% comment %}
+            <!-- <i class="text-danger far fa-comment mr-5 ml-2 mt-2" data-toggle="modal" data-target="#Reply"></i>
+            <p class="font-weight-bolder">رد</p> -->
+            {% endcomment %}
+        </div>
+    </div>
+    {% endfor %} {% else %}
+    <div class="Boxshadow text-center background mt-4 Borders1 mb-3 mr-4 ml-3" style="height:440px">
+        <div class="m-auto">
+            <div class="mt-2 mb-2">
+                <p class="card-title font-weight-bold pb-4 pt-4 text-center Color" style="font-size:25px"> لا توجد معلومات</p>
+                <img class="mb-4 mx-auto d-block" src="{% static 'iraq/images/informationR.png' %} " style="height:320px;width:350px;background-position:center" alt="Not Found">
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!--      -->
+    <!--======Start Pagination Member =========-->
+    {% include 'iraq/pagination.html' with page=comments %}
+    <!--======End Pagination Member =========-->
+    <!-- {% comment %}  {% include 'iraq/reply.html' %} {% endcomment %}  -->
+</div>
+{% endblock %}
+<!-- /* ======== End Comment Page======== */ -->

@@ -1,0 +1,26 @@
+{% extends "iraq/base.html" %} {% load static %} {% block content %}
+<div class="row m-0 pt-2 background4" style="background-color:#F6FCFD">
+    <div class="container">
+        <div class="row mt-4 mb-4">
+            <div class="col-sm-12 col-lg-6 mt-2 pt-5 pb-5 Boxshadow Borders1 border-0 bg-white button m-2">
+                <div class="col-sm-12">
+                    <a class="nav-link font-weight-bolder Color text-center font-size1" href="{% url 'register_intities' %}">تسجيل المؤسسة</a>
+                    <img class="mt-5 p-5 col-sm-12" src="{% static 'iraq/images/intities.png' %}" alt="intity">
+                </div>
+            </div>
+            <div class="col pt-5 pb-5 Boxshadow Borders1 border-0 bg-white font-size1 mt-2 button m-2">
+                <div class="col-sm-12">
+                    <a class="nav-link font-weight-bolder Color text-center" href="{% url 'register_user' %}">تسجيل المستخدم</a>
+                    <img class="mr-4 col-sm-12" style="padding:90px" src="{% static 'iraq/images/user.png' %}" alt="user">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'user_template/base_template.html' %} {% load static %}
+<!-- /* ======== Start Home Page ======== */ -->
+{% block main_content %}
+
+<!-- ======== Start Section Introduction Picture ======== -->
+<div class="row background justify-content-center m-0">
+    <div class="col-sm-10 col-lg-4 mr-2">
+        <p class="padding-top lead font-weight-bolder text-center Color pb-5">معا لعراق اجمل</p>
+        <button style="margin-right:35%" class="font-size H Width text-white mb-5 background1 font-weight-normal Borders1 border-0 text-center Boxshadow" onclick=document.location="{% url 'details2' %}">قراءة المزيد</button>
+    </div>
+    <div class="col-sm-12 col-lg-6 mt-5 pb-5">
+        <img class="img-responsive image-width1" src="{% static 'iraq/images/iraq.png' %}" alt="intro">
+    </div>
+</div>
+<!-- ======== End Section Introduction Picture ======== -->
+
+
+<!-- ======== Start Section About APP ========-->
+<div class="row Boxshadow Borders justify-content-center" id="container1">
+    <div class="col-sm-10 col-lg-4 p-5">
+        <img class="img-responsive image-width1" src="{% static 'iraq/images/app.png' %}" alt="app">
+    </div>
+    <div class="col-sm-12 col-lg-8 mt-5">
+        <p class="font-weight-bold Color lead text-center">عن التطبيق</p>
+        <p class="mt-4 font-weight-normal Color1 text-center" style="line-height: 30px;"> تطبيق تم عمله ليكون دافع لكل شخص للتطوع لجعل بلده باحلى صورة و كيف الاشخاص تتسابق لاجل العراق و كذلك لاستثمار طاقات الشباب و استقطابهم لاجل هدف اسمى معالم البشرية و هو التطوع من اجل الانسانية بشكل عام و من اجل العراق و نفسه بشكل خاص و لتعليم الشباب
+            ما هو التطوع و كيف يمكن الاستفادة منهم بامور تخدم وطنه و لانتشال الشباب من حالات الضياع و الفشل التي نجدها للاسف قد انتشرت في الكثير من الامور سواء بسبب البطالة او حتى امور خارجة عن ارادة الشخص يصنف في هذا التطبيق جميع المؤسسات الخيرية (صحة
+            _فنون-تعليم ----الخ) حيث يمكن لاي مؤسسة خيرية في داخل العراق التسجيل في هذا التطبيق و في حالة احد المواطنين يريد التطوع يتفق مع هذه المؤسسة </p>
+    </div>
+</div>
+<!-- ======== End Section About APP ========-->
+
+
+<!--=========Start Section what volunteer ==========-->
+<div class="row Boxshadow Borders justify-content-center" id="container1">
+    <div class="col-sm-10 col-lg-4 p-5">
+        <img class="img-responsive image-width1" src="{% static 'iraq/images/whyV.png' %}" alt="app">
+    </div>
+    <div class="col-sm-12 col-lg-8 mt-5">
+        <p class="font-weight-bold text-center Color lead">ما هو التطوع؟</p>
+        <p class="mt-4 font-weight-normal Color1 text-center" style="line-height: 30px;"> هو تقديم المساعدة والعون والجهد من أجل العمل على تحقيق الخير في المجتمع عموماً ولأفراده خصوصاً فهو ارادة ،داخلية واطلق عليه مسمى عمل تطوعي لان الانسان يقوم به طواعية دون اجبار من الاخرين على فعله، وغلبة لسلطة الخير على جانب الشر، ودليل على ازدهار
+            المجتمع
+        </p>
+    </div>
+</div>
+<!--=========End Section what volunteer ==========-->
+
+{% endblock %}
+<!-- /* ======== End Index Page ======== */ -->

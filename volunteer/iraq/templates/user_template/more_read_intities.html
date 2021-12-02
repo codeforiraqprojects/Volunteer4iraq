@@ -1,0 +1,61 @@
+{% extends 'user_template/base_template.html' %} {% load static %}
+
+<!-- /* ======== Start Profile Intities Page ======== */ -->
+{% block main_content %}
+<div class="background2 pb-5">
+    <div class="form-group pr-5 pl-5 pt-4">
+        {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% endif %} {% endfor %} {% endif %}
+    </div>
+    <div class="row background Boxshadow" style="margin-right:20px;margin-left:20px;border-radius:10px 10px 0px 0px">
+        <div class="col pr-5 pt-4 pb-4">معلومات المؤسسة</div>
+    </div>
+    <div class="bg-white Boxshadow pb-5 Borders mr-4 ml-4">
+        <div class="row">
+            <label class="col-sm-12 col-lg-2 text-dark font-weight-bolder pr-5" style="margin-top:60px">اسم المؤسسة</label>
+            <div class="col-sm-9 col-lg-3 Boxshadow text-center pt-3 Borders4" style="margin-right:20px;margin-top:30px;height:60px;width:315px">
+                {{ intity.name }}
+            </div>
+            <label class="col-sm-9 col-lg-2 text-dark font-weight-bolder pr-5" style="margin-top:60px">المحافظة</label>
+            <div class="col-sm-11 col-lg-3 Boxshadow text-center pt-3 Borders4" style="margin-right:20px;height:60px;margin-top:30px;width:315px">
+                {{ intity.region }}
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-9 col-lg-2 text-dark font-weight-bolder pr-5" style="margin-top:35px;">تأريخ التأسيس</label>
+            <div class="col-sm-11 col-lg-3 Boxshadow text-center pt-3 Borders4" style="height:60px;margin-top:20px;margin-right:18px;width:315px">
+                {{ intity.created}}
+            </div>
+            <label class="col-sm-9 col-lg-2 text-dark font-weight-bolder pr-5" style="margin-top:35px;">التصنيف</label>
+            <div class="col-sm-11 col-lg-3 Boxshadow text-center pt-3 Borders4" style="height:60px;margin-top:20px;margin-right:18px;width:315px">
+                {{ intity.classification }}
+            </div>
+        </div>
+        <div class="row">
+            <label class="text-dark font-weight-bolder pr-5" style="margin-top:35px;margin-right:20px">ملخص</label>
+            <div class="col-sm-10 Boxshadow  pt-3 float-right text-center Borders4" style="margin-top:20px;margin-right:30px;width:85%">
+                <p class="float-right">{{ intity.abstract}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="text-dark font-weight-bolder pr-5" style="margin-top:35px;margin-right:20px">اعمالها</label>
+            <div class="col-sm-10 Boxshadow pt-3 float-right text-center Borders4" style="margin-top:20px;margin-right:30px;width:85%">
+                <p class="float-right">{{ intity.works}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label for="username" class="text-dark font-weight-bolder pr-5" style="margin-top:35px;margin-right:20px">الترخيص</label>
+            <div class="" style="margin-top:20px;margin-right:20px;">
+                <img class="float-right Borders4" style="width:200px;height:200px" src="/media/{{ intity.permission}}" alt="Card image">
+                <!-- <div class="bg-primary text-center font-weight-bolder nav-link text-white Borders4">عرض الترخيص</div> -->
+            </div>
+        </div>
+    </div>
+    <div class="row Boxshadow bg-white mr-4 ml-4 mt-1" style="border-radius:0px 0px 10px 10px;height:60px">
+    </div>
+</div>
+{% endblock main_content %}
+<!-- /* ======== End Profile Intities Page ======== */ -->

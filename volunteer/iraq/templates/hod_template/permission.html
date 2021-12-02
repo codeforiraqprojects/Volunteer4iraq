@@ -1,0 +1,27 @@
+{% load static %}
+<style>
+    body,
+    html {
+        height: 100%;
+        margin: 10;
+    }
+    
+    .bg {
+        /* The image used */
+        background-image: url("/media/{{ user.intity.permission}}");
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain, cover;
+    }
+</style>
+</head>
+
+<body>
+    <div class="Boxshadow bg">
+    </div>
+</body>
+
+</html>

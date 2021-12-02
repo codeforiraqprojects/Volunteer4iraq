@@ -1,0 +1,89 @@
+{% extends 'hod_template/base_template.html' %} {% load static %} {% block main_content %}
+<section class="background2" style="padding-top:40px">
+    <div class="form-group pr-5 pl-5 mt-3 mb-5">
+        {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% endif %} {% endfor %} {% endif %}
+    </div>
+    {% include 'iraq/pagination_notification.html' with page=numvolunteers %} {% if numvolunteers %} {% for numvolunteer in numvolunteers %}
+    <div class="bg-white Boxshadow Borders1 mr-4 ml-3 mb-5" style="padding-bottom:100px">
+        <i class="fas fa-user-plus mt-5 text-primary" style="margin-right:32%" data-placement="top" title="اضافة متطوعين" data-toggle="modal" data-target="#addVolunteer"></i>
+        <img class="w3-circle Boxshadows" style="width:160px;height:160px;margin-right:10%;margin-top:-60px" src="/media/{{ numvolunteer.volunteer_image }}" alt="Volunteer">
+        <a href="{% url 'delete_volunteer' numvolunteer.id %}"><i class="fas fa-trash-alt Boxshadow text-primary" style="margin-right:110px" data-placement="top" title="حذف"></i></a>
+        <p class="col-sm-12 font-weight-bolder text-center text-primary font-size1 mt-5">إشعارات المتطوعين</p>
+        <div class="row">
+            <div class="col-sm-1" style="margin-right:30%">
+                <small class="bg-primary badge p-3 text-white font-size3">{{num_volunteer}}</small>
+            </div>
+            <div class="col-sm-3">
+                <p class="text-muted pt-2 pb-5 mb-5 text-center">{{ numvolunteer.date_Volunteer }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-2">
+                <label class="font-weight-bolder pt-3 float-md-left mr-4"> اسم المؤسسة</label>
+            </div>
+            <div class="col-sm-5 col-md-8 mb-2">
+                <div class="Borders text-center pt-3 font-weight-bold mr-2 text-white bg-primary" style="width:96%;height:60px">{{numvolunteer.n_intity}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-2">
+                <label class="font-weight-bolder pt-3 float-md-left mr-4"> الاسم</label>
+            </div>
+            <div class="col-sm-5 col-md-8">
+                <div class="Borders text-center pt-3 font-weight-bold mr-2 text-white bg-primary" style="width:96%;height:60px">{{numvolunteer.name}}</div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12 col-md-2">
+                <label class="font-weight-bolder pt-3 float-md-left mr-4"> العمر</label>
+            </div>
+            <div class="col-sm-5 col-md-8">
+                <div class="Borders text-center pt-3 font-weight-bold mr-2 text-white bg-primary" style="width:96%;height:60px">{{numvolunteer.age}}</div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12 col-md-2">
+                <label class="font-weight-bolder pt-3 float-md-left mr-4"> الجنس</label>
+            </div>
+            <div class="col-sm-5 col-md-8">
+                <div class="Borders text-center pt-3 font-weight-bold mr-2 text-white bg-primary" style="width:96%;height:60px">{{numvolunteer.gender}}</div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12 col-md-2">
+                <label class="font-weight-bolder pt-3 float-md-left mr-4"> المحافظة</label>
+            </div>
+            <div class="col-sm-5 col-md-8">
+                <div class="Borders text-center pt-3 font-weight-bold mr-2 text-white bg-primary" style="width:96%;height:60px">{{numvolunteer.region}}</div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-12 col-md-2">
+                <label class="font-weight-bolder pt-3 float-md-left mr-4"> الوظيفة</label>
+            </div>
+            <div class="col-sm-5 col-md-8">
+                <div class="Borders text-center pt-3 font-weight-bold mr-2 text-white bg-primary" style="width:96%;height:60px"> {{numvolunteer.employee}}</div>
+            </div>
+        </div>
+        {% endfor %} {% else %}
+        <div class="background2 pb-5">
+            <div class="Boxshadow text-center background Borders1 mb-3 mr-4 ml-3" style="height:500px">
+                <i data-placement="top" title="اضافة متطوعين" class="mt-5 fas fa-user-plus text-primary" data-toggle="modal" data-target="#addVolunteer"></i>
+                <div class="m-auto">
+                    <div class="mt-2 mb-2">
+                        <p class="card-title font-weight-bold pb-4 pt-4 text-center Color" style="font-size:25px"> لا توجد معلومات</p>
+                        <img class="mb-4 mx-auto d-block" src="{% static 'iraq/images/informationR.png' %} " style="height:320px;width:350px;background-position:center" alt="Not Found">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!--======Start Pagination Member =========-->
+        {% include 'hod_template/add_volunteer.html' %}
+        <!--======End Pagination Member =========-->
+        {% endblock main_content %}
+</section>

@@ -1,0 +1,37 @@
+<style>
+    .pagination li.page-item a span:hover {
+        color: #fff;
+        background-color: #000;
+    }
+</style>
+<div class="pt-4 pb-4">
+    <nav aria-label="...">
+        <ul class="pagination border-0">
+            {% if page.has_previous %}
+            <li class="page-item">
+                <a class="page-link Boxshadow text-white bg-primary Borders border-0" href="?page={{page.previous_page_number}}"><span aria-hidden="true">«</span></a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link Borders border-0 Boxshadow" href="#" tabindex="-1"><span aria-hidden="true">«</span></a>
+            </li>
+            {% endif %}
+            <li class="page-item active text-primary bg-white" aria-current="page">
+                <a class="page-link Borders Boxshadow mr-2 border-2" href="#">{{page_obj.number}}<span class="sr-only">(current)</span></a>
+            </li>
+            <span class="p-1 mr-2 ml-2 font-weight-bold">من</span>
+            <li class="page-item" aria-current="page">
+                <a class="page-link Borders Boxshadow ml-2 border-2" href="#">{{page_obj.paginator.num_pages}}<span class="sr-only">(current)</span></a>
+            </li>
+            {% if page.has_next %}
+            <li class="page-item">
+                <a class="page-link Boxshadow text-white bg-primary Borders border-0" href="?page={{page.next_page_number}}"><span aria-hidden="true">»</span></a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link Borders border-0 Boxshadow" href="#" tabindex="-1"><span aria-hidden="true">»</span></a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

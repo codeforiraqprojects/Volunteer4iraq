@@ -1,0 +1,126 @@
+{% extends 'user_template/base_template.html' %} {% load static %}
+<!-- /* ======== Start Profile Page ======== */ -->
+{% block custom_css %}
+
+<style>
+    .custom-file {
+        background-color: #6F2DBD;
+        width: 50px;
+        height: 30px;
+        position: relative;
+        margin: 0px 200px 20px 360px;
+        z-index: 1;
+    }
+    
+    .custom-file>span {
+        font-size: 12px;
+    }
+    
+    .custom-file input[type="file"] {
+        width: 100%;
+        height: 100%;
+        margin: -40px -10px 0px 30px;
+        opacity: 0;
+        border-radius: 27px;
+    }
+</style>
+{% endblock custom_css %} {% block main_content %}
+<div class="pb-5 pt-3 background4">
+    <div class="bg-white mt-4 mr-4 ml-3 Boxshadow pb-5 Borders">
+        <form role="form" action="{% url 'profile_edit_user' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <p class="font-weight-bold text-primary mt-5 text-center"> الملف الشخصي</p>
+                    <img style="width:180px;height:180px;border:9px solid white;margin-right:25%" class="mt-sm-2 mt-md-5 bg-primary rounded-circle Boxshadow" src="/media/{{user.people.profile_pic}}" alt="الصورة الشخصية">
+                    <div style="margin-top:-34px">
+                        <span class="Boxshadow border-0 row badge badge-warning rounded-circle text-white custom-file" style="width:31px;height:31px;margin-right:46%;" data-placement="top">
+                            <i  data-target="#profile_pic" class="dd fas fa-camera fa-lg mr-1 mt-1" data-placement="top" title="تعديل صورة الملف الشخصي"></i>
+    					    <input style="margin-right:-50px;margin-top:0px;opacity:0" type="file" name="profile" />
+                        </span>
+                    </div>
+                    <!-- <h5 class="mt-5 text-center" style="margin-right:120px">{{user.username}}</h5> -->
+                </div>
+                <div class="col-sm-11 col-md-7">
+                    <div class="row mt-5 col-sm-12 col-md-12">
+                        <div class="row mt-sm-0 mt-md-5">
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">اسم المستخدم</label>
+                                <div>
+                                    <input style="height:50px" type="text" class="mr-4 mt-2 form-control border-0 Boxshadow bg-dark text-white" placeholder="الاسم" name="user" value="{{user.username}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">البريد الالكتروني</label>
+                                <input style="height:50px" type="email" class="mr-4 mt-2 form-control border-0 Boxshadow bg-dark text-white" placeholder="البريد الالكتروني" name="email" value="{{ user.email }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">رقم الهاتف</label>
+                                <input style="height:50px" placeholder="964-7000000000" type="tel" class="mr-4 mt-2 form-control border-0 Boxshadow bg-dark text-white" name="phone" value="{{ user.people.phone }}">
+                            </div>
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">المحافظة</label>
+                                <div class="mr-4 pt-3 form-control border-0 Boxshadow bg-dark text-white mt-2" style="height:50px">
+                                    <span>{{ user.people.region }}</span>
+                                    <select name="region" class="float-left border-0 bg-dark text-white">
+                                    {% for region in region %}
+                                        <option value="{{ region }}">{{ region }}</option>
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">تاريخ الميلاد</label>
+                                <div class="mr-4 pt-3 form-control border-0 Boxshadow bg-dark text-white mt-2" style="height:50px">
+                                    <span>{{ user.people.birth }}</span>
+                                    <input type="date" class="float-left border-0 bg-dark text-white" required placeholder="تاريخ الميلاد" name="birth">
+                                </div>
+                            </div>
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">الجنس</label>
+                                <div class="mr-4 pt-3 form-control border-0 Boxshadow bg-dark text-white mt-2" style="height:50px">
+                                    <span>{{ user.people.gender }}</span>
+                                    <select name="gender" class="float-left border-0 bg-dark text-white">
+                                        {% for gender in gender %}
+                                        <option value="{{gender}}">{{ gender }}</option>
+                                    {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">الوظيفة</label>
+                                <input style="height:50px" type="text" class="mr-4 mt-2 form-control border-0 Boxshadow bg-dark text-white" placeholder="الوظيفة" name="employee" value="{{user.people.employee}}">
+                            </div>
+                            <div class="col-sm-11 col-lg-6">
+                                <label class="mr-4 font-size3 text-dark font-weight-bold mt-3">facebook</label>
+                                <input style="height:50px" type="url" class="mr-4 mt-2 form-control border-0 Boxshadow bg-dark text-white" placeholder="فيسبوك" name="facebook" value="{{user.people.facebook}}">
+                            </div>
+                        </div>
+                        <input type="hidden" value="{{ user.id }}" name="user_id">
+                        <button style="width:100%;height:60px" type="submit" class="mt-5 mb-5 mr-5 font-weight-bolder border-0 text-center text-white Borders1 bg-primary">حفظ</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="background4 m-5">
+        {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success text-center Boxshadow border-0 Borders4 text-primary font-weight-bold">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger text-center Boxshadow border-0 Borders4 text-primary font-weight-bold">{{ message }}</div>
+        {% endif %} {% endfor %} {% endif %}
+    </div>
+</div>
+
+
+
+
+
+{% endblock main_content %}
+<!-- /* ======== End Profile Page ======== */ -->

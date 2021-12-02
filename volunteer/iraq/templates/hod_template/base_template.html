@@ -1,0 +1,62 @@
+{% load static %}
+<!-- /* ======== Start Base Page======== */ -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% if title %}
+    <title> تطوع / {{title}}</title>
+    {% else %}
+    <title>تطوع</title>
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'iraq/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'iraq/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'iraq/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<style>
+    .button:hover {
+        box-shadow: 0px 37px 20px -20px #F1ECEC;
+        -webkit-transform: translate(0px, -10px) scale(1);
+        transform: translate(0px, -10px) scale(1);
+    }
+</style>
+
+
+
+{% block content %}
+
+<body>
+    <!-- ==========  Start Navbar  ========== -->
+    <nav class="main-header navbar navbar-light Boxshadow">
+        <img class="image-width image-height" src="{% static 'iraq/images/logo.png' %}" style="margin-right: 20%" alt="Logo">
+        <button class="bg-primary font-size Borders1 nav-link ml-5 Boxshadow logout_btn text-center text-white border-0"><a href="{% url 'logout' %}">خروج</a></button>
+    </nav>
+    <!-- ========  End Navbar  ======== -->
+
+    <!--===== Main Sidebar Container ======-->
+    {% include 'hod_template/dashboard.html' with user=user id=id %}
+
+    <!--  -->
+
+
+
+    <div class="content">
+        {% block main_content %} {% endblock main_content %}
+        <!--  -->
+    </div>
+
+    <!--====== Footer =======-->
+    {% include 'iraq/footer.html' %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'iraq/js/fontawesome-all.min.js' %}"></script>
+    <script src="/iraq/static/iraq/js/main.js"></script>
+
+</body>
+
+</html>
+{% endblock %}
+<!-- /* ======== End Base Page======== */ -->

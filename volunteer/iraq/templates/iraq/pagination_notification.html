@@ -1,0 +1,25 @@
+<ul class="pagination pb-5">
+    {% if page.has_previous %}
+    <li>
+        <a style="height:40px;width:40px;border-radius:50%" class="Boxshadow badge badge-primary mr-2" href="?page={{page.previous_page_number}}"><i class=" mt-2 fas fa-angle-right fa-2x"></i></a>
+    </li>
+    {% else %}
+    <li class="disabled">
+        <a href="#" tabindex="-1" style="height:40px;width:40px;border-radius:50%" class="Boxshadow badge bg-white mr-2"><i class="mt-2 fas fa-angle-right fa-2x"></i></a>
+    </li>
+    {% endif %}
+    <li aria-current="page">
+        <a class="font-weight-bolder mr-5 ml-2" href="#">{{page.number}}<span class="sr-only">(current)</span></a>
+        <span>من</span>
+        <a class="font-weight-bolder mr-2" href="#">{{page.paginator.num_pages}}<span class="sr-only">(current)</span></a>
+    </li>
+    {% if page.has_next %}
+    <li class="active">
+        <a style="height:40px;width:40px;border-radius:50%" class="Boxshadow badge badge-primary mr-5" href="?page={{page.next_page_number}}"><i class="mt-2 fas fa-angle-left fa-2x"></i></a>
+    </li>
+    {% else %}
+    <li class="disabled">
+        <a href="#" tabindex="-1" style="height:40px;width:40px;border-radius:50%" class=" Boxshadow badge bg-white mr-5"><i class="mt-2 fas fa-angle-left fa-2x"></i></a>
+    </li>
+    {% endif %}
+</ul>

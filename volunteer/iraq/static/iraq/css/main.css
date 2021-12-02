@@ -1,0 +1,450 @@
+* {
+    direction: rtl;
+    text-align: right;
+    font-family: 'changa';
+    scrollbar-width: 2px;
+    scrollbar-color: #EFFEFE #fff;
+}
+
+
+/* .parent {
+    counter-increment: members-counter;
+}
+
+.one:after {
+    content: counter(members-counter);
+} */
+
+.one {
+    position: relative;
+    background: #6F2DBD;
+    color: white;
+}
+
+button:hover {
+    opacity: 100%;
+}
+
+
+/* *::-webkit-scrollbar {
+    width: 13px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #F6FCFD;
+    border: 0;
+    border-radius: 27px;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: #F6FCFD;
+} */
+
+.button:hover {
+    box-shadow: 0px 37px 20px -20px #F6FCFD;
+    -webkit-transform: translate(0px, -10px) scale(1.1);
+    transform: translate(0px, -10px) scale(1.1);
+}
+
+.font-size {
+    font-size: 13px;
+}
+
+.font-size1 {
+    font-size: 20px;
+}
+
+.font-size3 {
+    font-size: 15px;
+}
+
+.font-size4 {
+    font-size: 14px;
+}
+
+.Color {
+    color: #44A5E4;
+}
+
+.Color1 {
+    color: rgb(110, 102, 102);
+}
+
+.Color2 {
+    color: #6F2DBD;
+}
+
+.Color3 {
+    color: #C51DB5;
+}
+
+.Color4 {
+    color: #00C7FE;
+}
+
+.Color5 {
+    color: #EFFEFE;
+}
+
+.background {
+    background-color: #EFFEFE;
+}
+
+.background1 {
+    background-color: #6F2DBD;
+}
+
+.background2 {
+    background-color: #FAFAFA;
+}
+
+.background3 {
+    background-color: #2699FB;
+}
+
+.background4 {
+    background-color: #F6FCFD;
+}
+
+.background5 {
+    background-color: #C51DB5;
+}
+
+.H {
+    height: 45px;
+}
+
+.H1 {
+    height: 150px;
+}
+
+.H2 {
+    height: 50px;
+}
+
+.H3 {
+    height: 60px;
+}
+
+.H4 {
+    height: 70px;
+}
+
+.Width {
+    width: 120px;
+}
+
+.image-width {
+    width: 70px;
+}
+
+.image-width1 {
+    width: 100%;
+}
+
+.image-height {
+    height: 50px
+}
+
+.margin-right {
+    margin-right: 3px;
+}
+
+.padding-top {
+    padding-top: 100px;
+}
+
+.Borders {
+    border-radius: 5px;
+}
+
+.Borders1 {
+    border-radius: 27px;
+}
+
+.Borders2 {
+    border-radius: 0px 0px 5px 5px;
+}
+
+.Borders3 {
+    border-radius: 5px 5px 0px 0px;
+}
+
+.Borders4 {
+    border-radius: 8px;
+}
+
+.Borders5 {
+    border-radius: 8px 8px 0px 0px;
+}
+
+.Borders6 {
+    border-radius: 0px 0px 8px 8px;
+}
+
+.Borders7 {
+    border: 1px solid #44A5E4;
+}
+
+.Boxshadow {
+    box-shadow: 0px 3px 6px #F1ECEC;
+}
+
+.Boxshadows {
+    border: 8px solid #fff;
+}
+
+#container {
+    margin: 50px 20px 20px 20px;
+}
+
+#container1 {
+    margin: 25px 20px 20px 20px;
+}
+
+.content2 {
+    background-position: center;
+}
+
+
+/* ======== End Myframework ======== */
+
+.c4i {
+    margin-right: 35%;
+}
+
+#menu {
+    background-color: white;
+    border-radius: 8px;
+    transition: 1s;
+}
+
+.nav li a {
+    text-align: center;
+    margin: 0 20px;
+    line-height: 50px;
+    font-weight: normal;
+    color: #6F2DBD;
+    height: 50px;
+    display: block;
+}
+
+.nav li a:after {
+    content: "";
+    display: block;
+    text-align: center;
+    width: 0;
+    height: 4px;
+    border-radius: 5px;
+    background-color: #6F2DBD;
+    transition: width .5s;
+    margin-top: 10px;
+}
+
+.nav li a:hover:after {
+    width: 100%
+}
+
+nav ul li a:hover,
+.active {
+    text-align: center;
+    transition: .5s;
+    color: #8cc8f0;
+    font-weight: bold;
+}
+
+.A1 {
+    height: 97px;
+    width: 97px;
+    border: 5px solid white;
+}
+
+
+/* ======== Start login & register ======== */
+
+.user_card {
+    padding: 40px 40px 0px 40px;
+    margin: 0px 0px 50px 0px;
+}
+
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.head-title {
+    padding: 30px;
+    margin: -40px -40px 0px -40px;
+}
+
+.head-title1 {
+    margin: 40px -40px 0px -40px;
+}
+
+
+/* ======== End login & register ======== */
+
+label #sidebar_btn {
+    z-index: 1;
+    color: #00A4ED;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.5s;
+    transition-property: color;
+}
+
+label #sidebar_btn:hover {
+    color: #000000;
+}
+
+#check:checked~.navigation {
+    right: -190px;
+    position: fixed;
+}
+
+#check:checked~.navigation a .title {
+    display: none;
+}
+
+#check:checked~.navigation .dd {
+    display: none;
+}
+
+#check:checked~.navigation a {
+    text-align: center;
+    font-size: 16px;
+    width: 60px;
+    margin-right: 170px;
+}
+
+#check {
+    display: none
+}
+
+.logout_btn {
+    font-weight: 600;
+    width: 80px;
+    height: 40px;
+    transition: 0.5s;
+    transition-property: 'background';
+}
+
+.logout_btn:hover {
+    background: #00A4ED;
+    color: #fff
+}
+
+
+/* ======== // Small devices (landscape phones, 576px and up) ======== */
+
+@media (min-width: 320px) and (max-width: 800px) {
+    /*.user_card {*/
+    /*    padding: 40px 40px 0px 40px;*/
+    /*    margin: 50px 4px 50px 0px;*/
+    /*}*/
+    .A1 {
+        margin: 50px 40%;
+    }
+    .nav li a {
+        margin-left: 60px;
+        margin-bottom: 10px;
+    }
+}
+
+
+/* @media(max-width: 400px) {
+.content {
+visibility: hidden;
+}
+} */
+
+@media(max-width: 374px) {}
+
+@media (min-width: 375px) and (max-width: 383px) {}
+
+@media (min-width: 384px) and (max-width: 410px) {}
+
+@media (min-width: 411px) and (max-width: 413px) {}
+
+@media (min-width: 414px) and (max-width: 449px) {}
+
+@media (max-width: 576px) {
+    /* ======== Start About ======== */
+    #col {
+        width: 100%;
+    }
+    #col1 {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .c4i {
+        margin: -40px 35% 0px 0px;
+    }
+    /* ======== End About ======== */
+}
+
+
+/* ======== // Medium devices (tablets, 768px and up) ======== */
+
+@media (min-width: 600px) {
+    /* ======== Start About ======== */
+    #col1 {
+        /* width: 100%; */
+        margin-top: 20px;
+    }
+    /*.c4i {*/
+    /*    margin: -40px 42% 0px 0px;*/
+    /*}*/
+    /* ======== End About ======== */
+}
+
+@media (min-width: 768px) {
+    /* ======== Start About ======== */
+    .W {
+        width: 220px;
+        height: 120px
+    }
+    /* ======== End About ======== */
+}
+
+
+/* ======== // Large devices (desktops, 992px and up) ========= */
+
+@media (min-width: 800px) {
+    /* ======== Start About ======== */
+    .A1 {
+        margin: 50px 32%;
+    }
+    .W {
+        width: 100%;
+        height: 120px;
+    }
+    /* ======== End About ======== */
+}
+
+@media (min-width: 1024px) {}
+
+
+/* ======== // Extra large devices (large desktops, 1200px and up) ========*/
+
+@media (min-width: 1200px) {
+    .height {
+        height: 400px;
+    }
+    /* ======== Start About ======== */
+    .A1 {
+        margin: 50px 32%;
+    }
+    .W {
+        width: 100%;
+        height: 120px;
+    }
+    #col1 {
+        width: 49%;
+        margin: 0px 2% 0px 0px;
+    }
+    #col2 {
+        width: 52%;
+        margin: 0px 20px 0px 0px;
+    }
+}

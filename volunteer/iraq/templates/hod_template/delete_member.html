@@ -1,0 +1,57 @@
+{% extends 'hod_template/base_template.html' %} {% load static %}
+<!-- /* ======== Start Edit Member Page ======== */ -->
+{% block main_content %}
+<div class="background2 pb-5 pt-5">
+    <div class="row background Boxshadow" style="margin-right:20px;margin-left:20px;border-radius:10px 10px 0px 0px">
+        <div class="col pr-5 pt-4 pb-4">حذف معلومات العضو</div>
+    </div>
+    <div class="bg-white Boxshadow pb-5 Borders mr-4 ml-4">
+        <form role="form" action="{% url 'deletes' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+                <div class="form-group mt-3 row">
+                    <label class="control-label float-right col-md-2 mt-md-3 text-md-center">اسم العضو</label>
+                    <input type="text" class="m-2 col-sm-12 col-md-9 Boxshadow Borders4 H2 Borders7" value="{{member.name}}">
+                </div>
+                <div class="form-group row">
+                    <label class="control-label float-right col-md-2 mt-md-3 text-md-center">الجنس</label>
+                    <div class="col-sm-12 col-md-9 m-2 bg-white Boxshadow pt-3 Borders4 H2 Borders7">
+                        <span>{{ member.gender }}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label float-right col-md-2 mt-md-3 text-md-center">المحافظة </label>
+                    <div class="col-sm-12 col-md-9 m-2 bg-white Boxshadow pt-3 Borders4 H2 Borders7">
+                        <span>{{ member.region }}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label float-right col-md-2 mt-md-3 text-md-center">الوظيفة </label>
+                    <input type="text" value="{{member.employee}}" class="m-2 col-sm-12 col-md-9 Boxshadow Borders4 H2 Borders7">
+                </div>
+                <div class="form-group row">
+                    <label class="control-label float-right col-md-2 mt-md-3 text-md-center">رقم الهاتف </label>
+                    <input type="text" value="{{member.phone}}" class="m-2 col-sm-12 col-md-9 Boxshadow Borders4 H2 Borders7">
+                </div>
+                <div class="form-group row">
+                    <label class="control-label float-right col-md-2 mt-md-3 text-md-center">البريد الالكتروني</label>
+                    <input type="email" value="{{member.email}}" class="m-2 col-sm-12 col-md-9 Boxshadow Borders4 H2 Borders7">
+                </div>
+                <div class="form-group row">
+                    <label class="control-label float-right col-md-2 mt-md-2 text-md-center">صورة العضو </label>
+                    <img class="mt-2 float-left col-md-2" src="/media/{{ member.member_image }} " style="height:100px">
+                </div>
+                <!-- Modal footer -->
+                <div class="mr-5 mt-5 ml-5 mb-2">
+                    <button type="submit" name="submit" class="col-sm-4 col-md-4 float-md-center text-center Borders1 bg-primary border-0 text-white Boxshadow H2">
+                        <input type="hidden" name="user_id" value="{{user.id}}">
+                        <input type="hidden" name="id" value="{{member.id}}">
+                         حذف
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock main_content %}
+<!-- /* ======== End Edit Member Page ======== */ -->

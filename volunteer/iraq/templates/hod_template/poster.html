@@ -1,0 +1,141 @@
+{% extends 'hod_template/base_template.html' %} {% load static %} {% block custom_css %} {% endblock custom_css %}
+<!-- /* ======== Start Poster Page ======== */ -->
+{% block main_content %}
+<div class="background2 pt-5 pb-5">
+    <div class="Boxshadow bg-white ml-3 mr-4 Borders4">
+        <p class="col-sm-12 font-weight-bolder pt-5 text-center text-primary mr-2">تصفح الفرص التطوعية</p>
+        <!--<img style="width:100px;height:200px;margin-right:35%" class="mb-5" src="{% static 'iraq/images/Poster.png' %}" alt="Poster">-->
+        <div class="row">
+            <div class="col text-center">
+                <a class="text-decoration-none" href="{% url 'poster' %}" method="get" name="q">
+                الكل
+            </a>
+            </div>
+            <div class="col text-center">
+                <a class="text-decoration-none" href="{% url 'search_PosterEdu_results' %}" method="get" name="q">
+                تعليم
+            </a>
+            </div>
+            <div class="col text-center">
+                <a class="text-decoration-none" href="{% url 'search_PosterEnv_results' %}" method="get" name="q">
+                بيئة
+            </a>
+            </div>
+            <div class="col text-center">
+                <a class="text-decoration-none" href="{% url 'search_PosterHea_results' %}" method="get" name="q">
+                صحة
+            </a>
+            </div>
+            <div class="col text-center">
+                <a class="text-decoration-none" href="{% url 'search_PosterArt_results' %}" method="get" name="q">
+                فنون
+            </a>
+            </div>
+            <div class="col text-center">
+                <a class="text-decoration-none" href="{% url 'search_PosterOth_results' %}" method="get" name="q">
+                أخرى
+            </a>
+            </div>
+        </div>
+        <div class="row pt-4 pb-5">
+            <div class="col text-center mt-4">
+                <a href="{% url 'poster' %}" class="pt-3 pb-3 pr-3 pl-3 text-decoration-none rounded-circle Boxshadow mr-2 text-primary" style="width:60px;height:60px;border:3px solid">
+                الكل
+                </a>
+            </div>
+            <div class=" col text-center mt-1">
+                <a href="{% url 'search_PosterEdu_results' %}"><img class="p-2 text-decoration-none rounded-circle Boxshadow mr-2 text-primary" style="width:60px;height:60px;border:3px solid" src="{% static 'iraq/images/Education.png' %}" alt="Education"></a>
+            </div>
+            <div class="col text-center mt-1">
+                <a href="{% url 'search_PosterEnv_results' %}"><img class="p-1 text-decoration-none rounded-circle Boxshadow mr-2 text-primary" style="width:60px;height:60px;border:3px solid" src="{% static 'iraq/images/envolution.png' %}" alt="Evolution"></a>
+            </div>
+            <div class="col text-center mt-1">
+                <a href="{% url 'search_PosterHea_results' %}"><img class="p-1 text-decoration-none rounded-circle Boxshadow mr-2 text-primary" style="width:60px;height:60px;border:3px solid" src="{% static 'iraq/images/health.png' %}" alt="Health"></a>
+            </div>
+            <div class="col text-center mt-1">
+                <a href="{% url 'search_PosterArt_results' %}"><img class="p-1 text-decoration-none rounded-circle Boxshadow mr-2 text-primary" style="width:60px;height:60px;border:3px solid" src="{% static 'iraq/images/art.png' %}" alt="Art"></a>
+            </div>
+            <div class="col text-center mt-1">
+                <a href="{% url 'search_PosterOth_results' %}"><img class="p-1 text-decoration-none rounded-circle Boxshadow mr-2 text-primary" style="width:60px;height:60px;border:3px solid" src="{% static 'iraq/images/others.png' %}" alt="Other"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-2">
+        <p class="col-md-2 pt-4 text-center text-primary"> جميع الفرص التطوعية</p>
+        <span data-placement="top" title="عدد المؤسسات" class="col-md-2 text-white badge rounded-circle mt-2 mr-5 Boxshadow bg-primary pt-3 button" style="width:45px;height:45px;border-radius:50%">
+            {{ num_poster }}
+        </span>
+        <!--====Start Add Poster-->
+        {% include 'hod_template/add_poster.html' %}
+        <button data-toggle="modal" data-target="#add_poster" type="button" class="pr-5 pl-5 border-0 Borders1 Boxshadow text-center text-white font-size3 bg-primary mt-3 mr-5" style="height:41px">
+        اضافة اعلان
+        </button>
+        <!--===End Add Poster===-->
+        <button type="button" class="border-0 Borders1 Boxshadow text-center pr-5 pl-5 text-white font-size3 bg-primary mt-3 mr-md-2" style="height:41px;margin-right:39%">
+            <a class="text-decoration-none text-white" href="{% url 'my_poster' user.id %}">اعلاناتي</a>
+        </button>
+    </div>
+    <div class="form-group pr-5 pl-5 mt-3 mb-5">
+        {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% endif %} {% endfor %} {% endif %}
+    </div>
+    {% if posters %} {% for poster in posters %}
+    <div class="Boxshadow text-center pb-4 bg-white Borders2 mr-4 ml-3">
+        <div class="row container mt-3 mb-5">
+            <div class="col-sm-12 col-md text-center pt-4" data-placement="top" title="المكان">
+                {{ poster.place }}
+            </div>
+            <!-- <div class="col-sm-12 col-md text-center pt-4" data-placement="top" title="عدد المتطوعين ">
+                num volunteer
+            </div> -->
+            <div class="col-sm-12 col-md text-center pt-4" data-placement="top" title="يوم التطوع ">
+                {{ poster.date_poster }}
+            </div>
+            <div class="col-sm-12 col-md text-center pt-4" data-placement="top" title="تاريخ التطوع ">
+                {{ poster.time_poster }}
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-12 col-md-3">
+                <img class="float-right mb-2 mr-2 ml-2 Borders" style="width:96%;height:90%" src="/media/{{ poster.poster_image }} " alt="Poster">
+            </div>
+            <div class="col-sm-12 col-md-9">
+                <div class="row pt-4">
+                    <div class="col-sm-12 col-md-4">
+                        <a class="text-decoration-none text-center" href="{% url 'comments' %}">
+                            <p class="text-primary font-weight-bold text-center" data-placement="top" title="اسم الؤسسة">{{ poster.name }} / {{poster.region}}/ {{poster.classification}}</p>
+                        </a>
+                    </div>
+                    <div class="col-sm-12 col-md-4 text-center">
+                        <small class="font-size3"><i class="text-danger font-size">نشر  منذ ...</i>{{ poster.created_at|timesince}}</small>
+                    </div>
+                </div>
+                <p class="p-3 mb-5 float-right font-size3" style="line-height:30px">{{ poster.posts }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!--  -->
+    {% include 'iraq/pagination.html' with page=posters %}
+    <!--  -->
+    {% else %}
+    <div class="Boxshadow text-center background Borders1 mb-3 mr-4 ml-3" style="height:440px">
+        <div class="m-auto">
+            <div class="mt-2 mb-2">
+                <p class="card-title font-weight-bold pb-4 pt-4 text-center Color" style="font-size:25px"> لا توجد معلومات</p>
+                <img class="mb-4 mx-auto d-block" src="{% static 'iraq/images/informationR.png' %} " style="height:320px;width:350px;background-position:center" alt="Not Found">
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    {% include 'iraq/pagination.html' with page=posters %}
+    <!--  -->
+</div>
+{% endif %} {% endblock %}
+
+
+<!-- /* ======== End Poster Page ======== */ -->

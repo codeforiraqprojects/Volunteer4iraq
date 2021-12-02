@@ -1,0 +1,49 @@
+<!-- {% load static %}
+<!-- The Modal -->
+<div class="modal" id="mypicture1">
+    <div class="modal-dialog">
+        <div class="modal-content border-0">
+
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary Boxshadow">
+                <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                <p class="modal-title text-center font-weight-bolder" style="font-size:15px;color:white">تعديل الملف الشخصي</p>
+            </div>
+
+            <!-- Modal body -->
+            <!-- form start -->
+
+
+            <form role="form" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <img class="mb-4" src="{{user.staff.profile_pic.url}}" style="width:200px;height:100px;margin-right:100px">
+                        <label class="control-label float-right">صورة الملف الشخصي</label>{{user.staff.profile_pic}}
+                        <input type="file" name="profile" class="col-sm-12 Boxshadow pt-3" style="border: 1px solid #44A5E4;height:50px;border-radius:8px;">
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer center">
+                        <!-- <input type="hidden" value="{{ user.staff.id }}" name="id"> -->
+                        <button type="submit" name="submit" style="border-radius:34px;background-color:#00C7FE;border:none;width:204px;height:41px;color:white;font-size:14px" class=" text-center font-weight-bolder">
+                <i class="fas fa-check"></i> حفظ
+              </button>
+                        <input type="hidden" value="{{ user.staff.id }}" name="id">
+                        <button class="btn btn-danger" data-dismiss="modal" style="border-radius:34px;border:none;width:204px;height:41px;color:white;font-size:14px" class=" text-center font-weight-bolder">
+                <i class="fas fa-times"></i> اغلاق
+              </button>
+                    </div>
+                    <div class="form-group">
+                        {% if messages %} {% for message in messages %} {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %} {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}{% endfor %} {% endif %}
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</form>

@@ -1,0 +1,105 @@
+{% extends 'hod_template/base_template.html' %} {% load static %}
+
+<!-- /* ======== Start Manage Member Page ======== */ -->
+{% block main_content %}
+<div class="background2 pt-5 pb-5">
+    <div class="form-group pr-5 pl-5 pt-4">
+        {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger text-center Boxshadow border-0 Borders4">{{ message }}</div>
+        {% endif %} {% endfor %} {% endif %}
+    </div>
+    <div class="row background Boxshadow" style="margin-right:20px;margin-left:20px;border-radius:10px 10px 0px 0px">
+        <div class="col pr-5 pt-4 pb-4">الاعضاء</div>
+        <!--======Start Add Member =========-->
+        <div class="col mb-3">
+            <button type="button" style="width:204px;height:41px;margin-top:15px" class="Borders1 border-0 font-size text-white Boxshadow bg-primary text-center" data-toggle="modal" data-target="#addmem">
+                    اضافة جديد
+            </button>
+        </div>
+    </div>
+    <!--======Start Data Member =========-->
+    <div class="row mt-1 bg-white Boxshadow table-hover Borders mr-4 ml-4">
+        <div class="float-right table-responsive">
+            <table class="table">
+                <!--  -->
+                {% if adminhod and members%}
+                <thead class="font-size3 text-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>الصورة</th>
+                        <th>الاسم</th>
+                        <th>الجنس</th>
+                        <th>المحافظة</th>
+                        <th>الوظيفة</th>
+                        <th>رقم الهاتف</th>
+                        <th>البريد الالكتروني</th>
+                        <th>الاجراء</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!--  -->
+                        {% for member in members %}
+                        <td class="" style="padding-top:30px;">
+                            <!-- <p class="mt-4">{{member.id}}</p> -->
+                        </td>
+                        <td><img class="Boxshadow mt-1" style="width:60px;height:60px;border-radius: 50%;border:3px #FAFAFA solid" src="/media/{{ member.member_image }}"></td>
+                        <td>
+                            <p class="mt-4">{{ member.name}}</p>
+                        </td>
+                        <td>
+                            <p class="mt-4">{{ member.gender }}</p>
+                        </td>
+                        <td>
+                            <p class="mt-4">{{ member.region }}</p>
+                        </td>
+                        <td>
+                            <p class="mt-4">{{ member.employee }}</p>
+                        </td>
+                        <td>
+                            <p class="mt-4">{{ member.phone }}</p>
+                        </td>
+                        <td>
+                            <p class="mt-4">{{ member.email }}</p>
+                        </td>
+                        <td>
+                            <a href="{% url 'update_member' member.id %}"><i class="mt-4 mr-2 fas fa-user-edit text-primary"></i></a>
+                        </td>
+                        <td>
+                            <!--======End Edit Member =========-->
+                            <!--======Start Delete Member =========-->
+                            <a href="{% url 'delete_member' member.id %} "><i class="mt-4 text-primary fas fa-trash-alt ml-2"></i></a>
+                            <!--======End Delete Member =========-->
+                        </td>
+                    </tr>
+                    {% endfor %} {% else %}
+                    <div class="Boxshadow text-center background mt-1 ml-3 table-responsive" style="height:440px;width:100%">
+                        <div class="row">
+                            <div class="m-auto">
+                                <div class="mt-2 mb-2">
+                                    <p class="card-title font-weight-bold pb-4 pt-4 text-center Color" style="font-size:25px"> لا توجد معلومات</p>
+                                    <img class="mb-4 " src="{% static 'iraq/images/informationR.png' %} " style="height:228px; width:350px; margin-right: 70px;margin-top:20px" alt="Not Found">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row Boxshadow bg-white mr-4 ml-4 mt-1 mb-5" style="border-radius:0px 0px 10px 10px;height:60px">
+    </div>
+
+    <!--======Start Pagination Member =========-->
+    {% include 'iraq/pagination.html' with page=members %}
+    <!--======End Pagination Member =========-->
+    <!--======Start Add Member =========-->
+    {% include 'hod_template/add_member.html' %}
+    <!--======End Add Member =========-->
+</div>
+
+{% endblock %}
+<!-- /* ======== End Manage Member Page ======== */ -->
